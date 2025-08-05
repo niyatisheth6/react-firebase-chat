@@ -1,6 +1,8 @@
+import UserChatDashboard from "./pages/user-chat/UserChatDashboard"
+
 const App = () => {
   return (
-    <div className=''>App</div>
+  <UserChatDashboard/>
   )
 }
 
