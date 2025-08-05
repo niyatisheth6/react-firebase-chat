@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import Search from "../../assets/img/search.png";
 import Avatar from "../../assets/img/avatar.png";
 import Plus from "../../assets/img/plus.png";
 import Minus from "../../assets/img/minus.png";
+import AddUserModal from "../../components/modal/AddUserModal";
 
 function ChatList() {
   const [addMore, setAddMore] = useState(false);
@@ -32,6 +33,7 @@ function ChatList() {
         <p className="text-sm">Hello</p>
       </div>
       </div>
+      {addMore && <AddUserModal/>}
     </div>
   );
 }

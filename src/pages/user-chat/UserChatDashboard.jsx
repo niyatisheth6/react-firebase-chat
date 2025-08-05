@@ -5,7 +5,7 @@ import Login from "../auth/Login";
 import Signup from "../auth/Signup";
 
 function UserChatDashboard() {
-  const user = false;
+  const user = true;
   return (
     <div className="background">
       <div className="container">
