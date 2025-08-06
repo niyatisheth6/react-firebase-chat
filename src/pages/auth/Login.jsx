@@ -1,7 +1,10 @@
+import { useState } from "react";
 import { useLoginForm } from "../../hooks/useLoginForm";
 
 function Login() {
-  const formik = useLoginForm();
+    const [isLoading, setIsLoading]= useState(false)
+
+  const formik = useLoginForm(setIsLoading);
 
   return (
  
@@ -40,7 +43,8 @@ function Login() {
 
           <button
             type="submit"
-            className="w-full p-4 border-none bg-blue-800 rounded-[.625rem] hover:bg-blue-900 text-white font-medium"
+            disabled={isLoading}
+            className="w-full p-4 border-none bg-blue-800 rounded-[.625rem] hover:bg-blue-900 text-white font-medium disabled:cursor-not-allowed"
           >
             Sign In
           </button>

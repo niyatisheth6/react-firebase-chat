@@ -12,3 +12,15 @@
 .container {
   @apply w-[80vw] h-[90vh] bg-black/45 p-4 rounded-md backdrop-blur-sm text-white flex;
 }
+.loading{
+  @apply p-[50px] text-4xl rounded-[.625rem] bg-black text-white
+}
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 0.25rem;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 0.5rem;
+}

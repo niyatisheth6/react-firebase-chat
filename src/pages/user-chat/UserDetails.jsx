@@ -2,18 +2,36 @@ import Avatar from "../../assets/img/avatar.png";
 import ArrowUp from "../../assets/img/arrowUp.png";
 import ArrowDown from "../../assets/img/arrowDown.png";
 import Download from "../../assets/img/download.png";
+import { auth, db } from "../../config/firebase";
+import { useUserStore } from "../../config/userStore";
+import { useChatStore } from "../../config/chatStore";
+import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore";
 
 function UserDetails() {
+   const {chatId, user, isCurrentUserBlocked, isReceiverBlocked, changeBlock} = useChatStore();
+   const { currentUser} = useUserStore()
+  const handleBlock =async () => {
+if(!user) return;
+const userDocRef = doc(db, "users", currentUser.id)
+try {
+  await updateDoc(userDocRef, {
+    blocked: isReceiverBlocked? arrayRemove(user?.id)  : arrayUnion(user?.id)
+  })
+  changeBlock()
+} catch (error) {
+  console.log(error)
+}
+  }
   return (
     <div className="flex-1">
       {/* user  */}
       <div className="px-[1.875rem[ py-5 flex flex-col items-center gap-[.9375rem] border-b border-b-gray-600 ">
         <img
-          src={Avatar}
+          src={user?.avatar || Avatar}
           alt="avatar"
           className="w-[6.25rem] h-[6.25rem] rounded-full object-cover"
         />
-        <h2>john doe</h2>
+        <h2>{user?.username}</h2>
         <p>Lorem ipsum dolor sit.</p>
       </div>
       {/* info */}
@@ -90,10 +108,10 @@ function UserDetails() {
             </button>
           </div>
         </div>
-        <button className="p-2.5 bg-red-800 hover:bg-red-900 border-none text-white rounded-[.3125rem]">
-          Block User
+        <button onClick={handleBlock} className="p-2.5 bg-red-800 hover:bg-red-900 border-none text-white rounded-[.3125rem]">
+        {isCurrentUserBlocked ? "You are blocked!" : isReceiverBlocked ? "User Blocked" : "Block User"}
         </button>
-        <button className="p-2.5 bg-blue-800 hover:bg-blue-900 border-none text-white rounded-[.3125rem]">
+        <button onClick={()=>auth.signOut()} className="p-2.5 bg-blue-800 hover:bg-blue-900 border-none text-white rounded-[.3125rem]">
           Logout
         </button>
       </div>

@@ -5,6 +5,7 @@ import Edit from "../../assets/img/edit.png";
 
 function Signup() {
   const [avatar, setAvatar] = useState({ file: null, url: "" });
+  const [isLoading, setIsLoading]= useState(false)
 
   const handleAvatar = (e) => {
     if (e.target.files[0]) {
@@ -15,17 +16,7 @@ function Signup() {
     }
   };
 
-  const formik = useSignupForm((values) => {
-    const formData = new FormData();
-    formData.append("username", values.username);
-    formData.append("email", values.email);
-    formData.append("password", values.password);
-    if (avatar.file) {
-      formData.append("avatar", avatar.file);
-    }
-
-    console.log("Form Submitted:", values);
-  });
+  const formik = useSignupForm(avatar, setIsLoading);
 
   return (
     <div className="flex-1 flex flex-col items-center gap-5">
@@ -42,7 +33,7 @@ function Signup() {
               className="w-[100px] h-[100px] rounded-full object-cover opacity-60"
             />
             <span className="bg-black w-10 h-10 flex justify-center items-center rounded-full absolute bottom-0 right-0">
-            <img src={Edit} className="w-5 h-5"/>
+              <img src={Edit} className="w-5 h-5" />
             </span>
           </label>
         </div>
@@ -100,7 +91,8 @@ function Signup() {
 
         <button
           type="submit"
-          className="w-full p-4 border-none bg-blue-800 rounded-[.625rem] hover:bg-blue-900 text-white font-medium"
+          disabled={isLoading}
+          className="w-full p-4 border-none bg-blue-800 rounded-[.625rem] hover:bg-blue-900 text-white font-medium  disabled:cursor-not-allowed"
         >
           Sign Up
         </button>
