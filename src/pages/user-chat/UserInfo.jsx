@@ -1,8 +1,9 @@
+import { useUserStore } from "../../config/userStore";
+
 import Avatar from "../../assets/img/avatar.png";
 import More from "../../assets/img/more.png";
 import Video from "../../assets/img/video.png";
 import Edit from "../../assets/img/edit.png";
-import { useUserStore } from "../../config/userStore";
 
 function UserInfo() {
   const { currentUser } = useUserStore();

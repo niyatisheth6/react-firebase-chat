@@ -1,6 +1,8 @@
 import { useState } from "react";
-import AvatarImg from "../../assets/img/avatar.png";
+
 import { useSignupForm } from "../../hooks/useSignupForm";
+
+import AvatarImg from "../../assets/img/avatar.png";
 import Edit from "../../assets/img/edit.png";
 
 function Signup() {

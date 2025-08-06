@@ -1,6 +1,20 @@
 import { useEffect, useRef, useState } from "react";
 
+import clsx from "clsx";
 import EmojiPicker from "emoji-picker-react";
+
+import {
+  arrayUnion,
+  doc,
+  getDoc,
+  onSnapshot,
+  updateDoc,
+} from "firebase/firestore";
+
+import { db } from "../../config/firebase";
+import { useChatStore } from "../../config/chatStore";
+import { useUserStore } from "../../config/userStore";
+import { uploadAvatarToCloudinary } from "../../config/auth";
 
 import Avatar from "../../assets/img/avatar.png";
 import Phone from "../../assets/img/phone.png";
@@ -10,18 +24,6 @@ import Emoji from "../../assets/img/emoji.png";
 import Img from "../../assets/img/img.png";
 import Camera from "../../assets/img/camera.png";
 import Microphone from "../../assets/img/mic.png";
-import {
-  arrayUnion,
-  doc,
-  getDoc,
-  onSnapshot,
-  updateDoc,
-} from "firebase/firestore";
-import { db } from "../../config/firebase";
-import { useChatStore } from "../../config/chatStore";
-import { useUserStore } from "../../config/userStore";
-import { uploadAvatarToCloudinary } from "../../config/auth";
-import clsx from "clsx";
 
 function UserChat() {
   const [openEmoji, setOpenEmoji] = useState(false);

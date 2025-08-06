@@ -1,14 +1,16 @@
+import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore";
+
+import { auth, db } from "../../config/firebase";
+import { useUserStore } from "../../config/userStore";
+import { useChatStore } from "../../config/chatStore";
+
 import Avatar from "../../assets/img/avatar.png";
 import ArrowUp from "../../assets/img/arrowUp.png";
 import ArrowDown from "../../assets/img/arrowDown.png";
 import Download from "../../assets/img/download.png";
-import { auth, db } from "../../config/firebase";
-import { useUserStore } from "../../config/userStore";
-import { useChatStore } from "../../config/chatStore";
-import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore";
 
 function UserDetails() {
-   const {chatId, user, isCurrentUserBlocked, isReceiverBlocked, changeBlock} = useChatStore();
+   const {user, isCurrentUserBlocked, isReceiverBlocked, changeBlock} = useChatStore();
    const { currentUser} = useUserStore()
   const handleBlock =async () => {
 if(!user) return;

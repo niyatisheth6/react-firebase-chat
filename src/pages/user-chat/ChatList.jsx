@@ -1,21 +1,26 @@
 import { useEffect, useState } from "react";
+
+import clsx from "clsx";
+
+import { doc, getDoc, onSnapshot, updateDoc } from "firebase/firestore";
+
+import { useUserStore } from "../../config/userStore";
+import { db } from "../../config/firebase";
+import { useChatStore } from "../../config/chatStore";
+
+import AddUserModal from "../../components/modal/AddUserModal";
+
 import Search from "../../assets/img/search.png";
 import Avatar from "../../assets/img/avatar.png";
 import Plus from "../../assets/img/plus.png";
 import Minus from "../../assets/img/minus.png";
-import AddUserModal from "../../components/modal/AddUserModal";
-import { useUserStore } from "../../config/userStore";
-import { doc, getDoc, onSnapshot, updateDoc } from "firebase/firestore";
-import { db } from "../../config/firebase";
-import { useChatStore } from "../../config/chatStore";
-import clsx from "clsx";
 
 function ChatList() {
   const [addMode, setAddMode] = useState(false);
   const [chats, setChats] = useState([]);
   const { currentUser } = useUserStore();
   const [searchInput, setSearchInput] = useState("");
-  const { chatId, changeChat } = useChatStore();
+  const {  changeChat } = useChatStore();
 
   const handleSelect = async (chat) => {
     const userChats = chats.map((item) => {

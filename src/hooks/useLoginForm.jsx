@@ -1,7 +1,9 @@
-import { useFormik } from "formik";
-import { loginValidationSchema } from "../validation";
 import { toast } from "react-toastify";
+import { useFormik } from "formik";
+
 import { loginUser } from "../config/auth";
+
+import { loginValidationSchema } from "../validation";
 
 export const useLoginForm = (setIsLoading) => {
   return useFormik({

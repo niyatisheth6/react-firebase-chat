@@ -1,13 +1,16 @@
+import { useEffect } from "react";
+
+import { onAuthStateChanged } from "firebase/auth";
+
+import { auth } from "../../config/firebase";
+import { useUserStore } from "../../config/userStore";
+import { useChatStore } from "../../config/chatStore";
+
 import UserList from "./UserList";
 import UserChat from "./UserChat";
 import UserDetails from "./UserDetails";
 import Login from "../auth/Login";
 import Signup from "../auth/Signup";
-import { useEffect } from "react";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../../config/firebase";
-import { useUserStore } from "../../config/userStore";
-import { useChatStore } from "../../config/chatStore";
 
 function UserChatDashboard() {
   const { currentUser, isLoading, fetchUserInfo } = useUserStore();

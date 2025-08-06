@@ -1,8 +1,10 @@
-import { arrayUnion, collection, doc, getDocs, query, serverTimestamp, setDoc, updateDoc, where } from "firebase/firestore";
-import Avatar from "../../assets/img/avatar.png";
-import { db } from "../../config/firebase";
 import { useState } from "react";
-import { array } from "yup";
+
+import { arrayUnion, collection, doc, getDocs, query, serverTimestamp, setDoc, updateDoc, where } from "firebase/firestore";
+
+import Avatar from "../../assets/img/avatar.png";
+
+import { db } from "../../config/firebase";
 import { useUserStore } from "../../config/userStore";
 
 function AddUserModal() {
